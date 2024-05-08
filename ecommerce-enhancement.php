@@ -20,12 +20,12 @@ add_action('init', 'ee_register_widget_scripts');
 
 function ee_remove_out_of_stock_home( $q ) 
 {
-  if ( is_front_page() ) {
-  $q->set( 'meta_query', array(array(
-    'key'       => '_stock_status',
-    'value'     => 'outofstock',
-    'compare'   => 'NOT IN'
-  )));
+  if ( is_front_page() && $q->query["post_type"] == "product") {
+    $q->set( 'meta_query', array(array(
+      'key'       => '_stock_status',
+      'value'     => 'outofstock',
+      'compare'   => 'NOT IN'
+    )));
 
   }
 
